@@ -1,0 +1,47 @@
+Teste do primeiro post yayyyy!
+31 de Outubro de 2024
+Um pequeno teste dos posts no blog. Acho que ficou fofinho e cutecute.
+
+<txt>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</txt>
+
+<title>
+Teste, teste, testando...
+</title>
+
+<txt>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+</txt>
+
+<img>foto_detalhe.webp</img>
+
+<txt>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua <link=Lorem Ipsum>https://media.tenor.com/5aphXdqgM9gAAAAm/cat-bad-cat.webp</link>.
+</txt>
+
+<title>
+Teste, teste, testando...
+</title>
+
+<txt>
+Lorem ipsum dolor sit amet</p>
+consectetur adipiscing elit</p>
+sed do eiusmod tempor incididunt</p>
+ut labore et dolore magna aliqua.
+</txt>
+
+<txt>
+A</p>
+B</p>
+C</p>
+D</p>
+E</p>
+F
+</txt>
+
+<txt>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+</txt>
+
+<img>foto_detalhe2.webp</img>
