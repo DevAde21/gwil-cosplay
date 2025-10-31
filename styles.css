@@ -374,7 +374,7 @@ main {
 .carousel-slides {
     position: relative;
     width: 100%;
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 1 / 1;
 }
 
 .carousel-slide {
