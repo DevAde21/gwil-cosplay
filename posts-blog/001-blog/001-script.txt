@@ -14,7 +14,7 @@ Teste, teste, testando...
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 </txt>
 
-<img>imagem1.webp</img>
+<img>imagem1.webp, imagem2.webp</img>
 
 <txt>
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua <link=Lorem Ipsum>https://media.tenor.com/5aphXdqgM9gAAAAm/cat-bad-cat.webp</link>.
@@ -44,7 +44,7 @@ F
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 </txt>
 
-<img>imagem2.webp</img>
+<img>imagem3.webp</img>
 
 <txt>
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
