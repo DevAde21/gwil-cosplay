@@ -97,7 +97,7 @@ a {
 main {
     padding: 40px 20px 60px;
     flex-grow: 1;
-    padding-top: 120px;
+    padding-top: 135px;
 }
 
 .page-content,
@@ -567,7 +567,7 @@ main {
 /* --- Responsividade --- */
 @media (max-width: 768px) {
     main {
-        padding-top: 140px;
+        padding-top: 145px;
     }
 
     .navbar {
@@ -621,11 +621,11 @@ main {
 
 @media (max-width: 480px) {
     main {
-        padding-top: 135px;
+        padding-top: 175px;
     }
 
     .nav-links a {
-        font-size: 12px;
+        font-size: 14px;
     }
 
     .section-title {
