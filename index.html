@@ -11,10 +11,64 @@
 
     <div id="header-placeholder"></div>
 
-    <main class="centered-content">
-        <div class="home-content">
-            <p>Essa é a página inicial. Aqui ficarão os destaques, informações importantes e tudo mais.</p>
-        </div>
+    <main>
+        <!-- 1. Seção da Agenda -->
+        <section id="agenda-banner">
+            <div class="agenda-banner-content">
+                <h1 id="agenda-status-text"></h1>
+            </div>
+        </section>
+        
+        <!-- 2. Seção "O que há de novo" (Estrutura corrigida) -->
+        <h2 class="home-section-title">O que há de novo</h2>
+        <section class="home-section home-section--notitle">
+            <div id="latest-posts-grid" class="latest-posts-grid">
+                <!-- Posts mais recentes do blog serão inseridos aqui pelo JavaScript -->
+            </div>
+        </section>
+
+        <!-- 3. Seção "O que é cosplay" -->
+        <section class="home-section what-is-cosplay-container">
+            <div class="what-is-cosplay-content">
+                <div class="what-is-cosplay-image">
+                    <img src="assets/whats_cos.png" alt="Ilustração de personagem de anime">
+                </div>
+                <div class="what-is-cosplay-text">
+                    <h2>O que é Cosplay?</h2>
+                    <p>Cosplay é a prática de se vestir como um personagem fictício e interpretá-lo. A palavra é uma junção dos termos em inglês "costume" (fantasia) e "role-play" (interpretação).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Seção de Feedbacks -->
+        <section id="feedbacks-section">
+            <h2 class="home-section-title light">Feedbacks Recentes</h2>
+            <div id="feedbacks-carousel" class="carousel">
+                <div class="carousel-slides" id="feedbacks-slides-container">
+                    <!-- Slides de feedback serão inseridos aqui -->
+                </div>
+                <button class="carousel-arrow prev">&#10094;</button>
+                <button class="carousel-arrow next">&#10095;</button>
+                <div class="carousel-dots" id="feedbacks-dots-container">
+                    <!-- Bolinhas de paginação serão inseridas aqui -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Seção "Quem sou eu" -->
+        <section class="home-section who-i-am-container">
+            <div class="who-i-am-content">
+                <div class="who-i-am-image">
+                    <img src="assets/who_i_am.webp" alt="Foto da Gwil Cosplay">
+                </div>
+                <div class="who-i-am-text">
+                    <h2>Quem sou eu</h2>
+                    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</p>
+                    <p>"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <div id="footer-placeholder"></div>

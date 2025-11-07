@@ -95,9 +95,8 @@ a {
 
 /* --- Conteúdo Principal e Layout Geral --- */
 main {
-    padding: 40px 20px 60px;
     flex-grow: 1;
-    padding-top: 135px;
+    padding-top: 100px;
 }
 
 .page-content,
@@ -110,6 +109,7 @@ main {
     margin: auto;
 }
 
+/* Título de seção para páginas internas (Encomendas, Blog, etc.) */
 .section-title {
     display: flex;
     align-items: center;
@@ -120,6 +120,7 @@ main {
     font-weight: 300;
     margin-bottom: 50px;
     text-align: center;
+    padding: 20px 0 0;
 }
 
 .section-title::before,
@@ -132,7 +133,7 @@ main {
     margin-top: 4px;
 }
 
-/* --- Introdução da Seção (Adicionado) --- */
+/* --- Introdução da Seção (Páginas internas) --- */
 .section-intro {
     text-align: center;
     max-width: 700px;
@@ -151,6 +152,186 @@ main {
     font-size: 1.1rem;
     line-height: 1.7;
     color: #666;
+}
+
+/* --- ESTILOS DA PÁGINA INICIAL --- */
+
+/* Seção do Banner da Agenda */
+#agenda-banner {
+    position: relative;
+    width: 100.01%;
+    height: 50vh;
+    left: 50%;
+    transform: translateX(-50%);
+    background-image: url('assets/homepage_header.webp');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--cor-texto-claro);
+    margin-top: -11px;
+}
+
+#agenda-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.35);
+    z-index: 1;
+}
+
+.agenda-banner-content {
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+}
+
+#agenda-status-text {
+    font-size: 3rem;
+    font-weight: 600;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+/* Seções da Home */
+.home-section {
+    max-width: 1200px;
+    margin: 45px auto;
+    padding: 0 20px;
+}
+.home-section--notitle {
+    margin-top: 0;
+}
+
+.home-section-title {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--cor-principal);
+    text-align: center;
+    margin: 45px 20px 50px;
+}
+
+.home-section-title.light {
+    color: var(--cor-texto-claro);
+    margin-bottom: 0;
+}
+
+.home-section-title::before,
+.home-section-title::after {
+    content: '';
+    height: 1.5px;
+    background-color: var(--cor-principal);
+    opacity: 0.7;
+    margin-top: 4px;
+    flex-grow: 1;
+}
+
+/* Seção "O que há de novo" */
+.latest-posts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+/* Seção "O que é Cosplay" */
+.what-is-cosplay-content {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+.what-is-cosplay-image {
+    flex: 0 0 300px;
+}
+.what-is-cosplay-image img {
+    max-width: 100%;
+    display: block;
+}
+.what-is-cosplay-text {
+    flex: 1;
+    color: #444;
+}
+.what-is-cosplay-text h2 {
+    font-size: 2rem;
+    font-weight: 400;
+    margin-bottom: 15px;
+}
+.what-is-cosplay-text p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+/* Seção de Feedbacks */
+#feedbacks-section {
+    background-color: var(--cor-principal);
+    padding: 60px 0;
+    width: 100.01%;
+    left: 50%;
+    transform: translateX(-50%);
+    position: relative;
+}
+
+#feedbacks-carousel {
+    max-width: 900px;
+    margin: 0 auto;
+    color: var(--cor-texto-claro);
+}
+#feedbacks-carousel .carousel-slides {
+    aspect-ratio: auto;
+    height: 180px;
+}
+#feedbacks-carousel .carousel-slide {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 40px;
+}
+#feedbacks-carousel .feedback-quote {
+    font-size: 1rem;
+    font-style: italic;
+    line-height: 1.5;
+    text-align: center;
+    margin-bottom: 20px;
+}
+#feedbacks-carousel .feedback-author {
+    font-size: 1rem;
+    align-self: flex-end;
+    margin-right: 15%;
+    font-style: italic;
+}
+
+/* Seção "Quem sou eu" */
+.who-i-am-content {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+.who-i-am-image {
+    flex: 0 0 40%;
+}
+.who-i-am-image img {
+    max-width: 100%;
+    border-radius: 12px;
+}
+.who-i-am-text {
+    flex: 1;
+    color: #444;
+}
+.who-i-am-text h2 {
+    font-size: 2rem;
+    font-weight: 400;
+    margin-bottom: 15px;
+}
+.who-i-am-text p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 1em;
 }
 
 /* --- Estilos da Página de Encomendas --- */
@@ -348,7 +529,6 @@ main {
     color: #444;
 }
 
-/* --- CORREÇÃO 1: Espaçamento vertical unificado para 1em --- */
 .post-body > * + * {
     margin-top: 1em;
 }
@@ -365,7 +545,6 @@ main {
     border-color: var(--cor-principal);
 }
 
-/* --- CORREÇÃO 2: Regras para containers de imagem --- */
 .single-image-container img,
 .dual-image-container img {
     display: block;
@@ -374,7 +553,7 @@ main {
 }
 
 .single-image-container img {
-    margin: 0 auto; /* Centraliza a imagem se ela for menor que o container */
+    margin: 0 auto;
 }
 
 .dual-image-container {
@@ -384,6 +563,44 @@ main {
 .dual-image-container img {
     flex: 1;
     width: 50%;
+}
+
+/* --- Estilos da Página FAQ (Adicionado) --- */
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.faq-container ol {
+    list-style: none;
+    padding-left: 0;
+}
+
+.faq-container li {
+    margin-bottom: 35px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 25px;
+}
+
+.faq-container li:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.faq-container li strong {
+    display: block;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #333;
+    cursor: default;
+}
+
+.faq-container li p {
+    font-size: 1.1rem;
+    color: #666;
+    line-height: 1.7;
+    margin-top: 10px;
 }
 
 /* Estilos do Carrossel de Imagens */
@@ -426,18 +643,19 @@ main {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.0);
     color: white;
     border: none;
     padding: 10px 15px;
-    font-size: 1rem;
+    font-size: 2rem;
     cursor: pointer;
     z-index: 10;
-    transition: background-color 0.3s;
+    transition: opacity 0.3s;
+    opacity: 0;
 }
 
-.carousel-arrow:hover {
-    background-color: rgba(0, 0, 0, 0.7);
+.carousel:hover .carousel-arrow {
+    opacity: 1;
 }
 
 .carousel-arrow.prev {
@@ -565,9 +783,25 @@ main {
 }
 
 /* --- Responsividade --- */
+@media (max-width: 1024px) {
+    .latest-posts-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
 @media (max-width: 768px) {
     main {
-        padding-top: 145px;
+        padding-top: 140px;
+    }
+
+    #agenda-banner {
+        margin-top: -5px;
+        height: 300px;
+    }
+
+    #agenda-status-text {
+        font-size: 2rem;
     }
 
     .navbar {
@@ -579,11 +813,40 @@ main {
         gap: 20px;
     }
 
+    .latest-posts-grid {
+        grid-template-columns: 1fr;
+    }
+    .latest-posts-grid .blog-preview-card:nth-child(n+4) {
+        display: none;
+    }
+
+    .what-is-cosplay-content, .who-i-am-content {
+        flex-direction: column;
+    }
+
+    .what-is-cosplay-image {
+        order: 1;
+        max-width: 50%;
+        margin: 0;
+    }
+
+    .what-is-cosplay-text {
+        text-align: center;
+    }
+
     .encomendas-grid,
     .portfolio-grid {
         grid-template-columns: 1fr;
         max-width: 400px;
         gap: 20px;
+    }
+
+    .who-i-am-content{
+        gap: 15px;
+    }
+
+    .who-i-am-text{
+        text-align: center;
     }
 
     .footer-container {
@@ -621,20 +884,32 @@ main {
 
 @media (max-width: 480px) {
     main {
-        padding-top: 175px;
+        padding-top: 265px;
+    }
+
+    #agenda-banner {
+        margin-top: -135px;
     }
 
     .nav-links a {
         font-size: 14px;
     }
 
-    .section-title {
+    .section-title, .home-section-title {
         font-size: 1.5rem;
         gap: 15px;
     }
 
+    #agenda-status-text {
+        font-size: 1.8rem;
+    }
+
     .card-title {
         font-size: 2rem;
+    }
+
+    .what-is-cosplay-image{
+        max-width: 75%;
     }
 
     .footer-slogan {
@@ -643,5 +918,11 @@ main {
 
     .footer-links a {
         font-size: 13px;
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .carousel-arrow {
+        display: none;
     }
 }
