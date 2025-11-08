@@ -1,0 +1,89 @@
+Olá, Gwil! Este arquivo é o seu guia para gerenciar o conteúdo do site.
+Tudo foi projetado para ser o mais simples possível, editando apenas arquivos de texto.
+
+=======================================================
+ SEÇÃO 1: GERENCIANDO O CONTEÚDO (PASTA /instructions)
+=======================================================
+Todos os arquivos a seguir estão na pasta "instructions".
+
+---------------------------------
+1. schedule_info.txt
+---------------------------------
+- O que faz: Controla o texto que aparece no banner principal da página inicial.
+- Como usar: Simplesmente escreva o texto que você quer que apareça. Você pode usar quebras de linha (apertando Enter) e elas serão respeitadas no site.
+
+Exemplo:
+Agenda para 2024 fechada!
+Novas vagas disponíveis a partir de janeiro de 2025.
+
+---------------------------------
+2. feedbacks.txt
+---------------------------------
+- O que faz: Adiciona, edita ou remove os feedbacks dos clientes que aparecem no carrossel da página inicial.
+- Como usar: Cada feedback é composto por duas linhas, seguido de uma linha em branco.
+  - Linha 1: A citação do cliente.
+  - Linha 2: O nome do cliente.
+  - Linha 3: DEIXE ESTA LINHA EM BRANCO para separar do próximo feedback.
+
+Exemplo:
+Achei incrível, coube perfeitamente em mim!
+Maria
+
+Um trabalho magnífico, ficou igualzinho ao original!
+Ana
+
+---------------------------------
+3. blog_index.txt e portfolio_index.txt
+---------------------------------
+- O que fazem: Estes arquivos listam TODOS os posts existentes no seu blog e no seu portfólio. Eles são essenciais para que o site saiba quais posts carregar e para mostrar sempre os mais novos primeiro.
+- Como usar: TODA VEZ que você criar um novo post (seja no blog ou no portfólio), você DEVE adicionar o ID dele em uma nova linha no final do arquivo correspondente.
+
+Exemplo (se você criar o post de blog "007-blog"):
+No arquivo blog_index.txt, adicione "007" no final.
+
+001
+002
+003
+004
+005
+006
+007
+
+
+=======================================================
+ SEÇÃO 2: CRIANDO POSTS NO BLOG (LINGUAGEM BIAScript)
+=======================================================
+Para criar um post, você cria uma nova pasta dentro de "data/posts-blog/", por exemplo "007-blog".
+Dentro dela, você precisa de um arquivo "007-script.txt" e das imagens que vai usar.
+
+A estrutura do arquivo "XXX-script.txt" é:
+- Linha 1: Título Principal do Post
+- Linha 2: Data do Post
+- Linha 3: Breve Descrição (aparece na prévia do post)
+- Linha 4: (Deixe em branco)
+- Linha 5 em diante: O conteúdo do post usando as tags BIAScript.
+
+---------------------------------
+Tags do BIAScript
+---------------------------------
+
+<title>Subtítulo aqui</title>
+- Cria um subtítulo dentro do post.
+
+<txt>Parágrafo de texto aqui.</txt>
+- Cria um parágrafo de texto. As quebras de linha dentro do <txt> são ignoradas, o texto flui continuamente.
+
+<img>imagem_unica.webp</img>
+- Insere uma única imagem centralizada.
+
+<img>imagem1.webp, imagem2.webp</img>
+- Insere duas imagens, uma ao lado da outra.
+
+<carousel>foto1.webp, foto2.webp, foto3.webp</carousel>
+- Cria um carrossel com as imagens listadas, separadas por vírgula.
+
+<link>https://www.google.com</link>
+- Cria um link clicável onde o próprio texto do link é a URL.
+
+<link=Clique aqui para visitar o Google>https://www.google.com</link>
+- Cria um link com um texto personalizado. O texto fica antes do ">" e a URL depois.

@@ -27,8 +27,8 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    loadComponent("header-placeholder", "header.html");
-    loadComponent("footer-placeholder", "footer.html");
+    loadComponent("header-placeholder", "components/header.html");
+    loadComponent("footer-placeholder", "components/footer.html");
 
     // --- FUNÇÃO GLOBAL DE INICIALIZAÇÃO DE CARROSSÉIS ---
     function initializeCarousels() {
@@ -79,7 +79,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 touchStartX = e.changedTouches[0].screenX;
             }, { passive: true });
 
-            // CORREÇÃO 3: Prevenir o comportamento padrão de scroll durante o swipe
             carousel.addEventListener('touchmove', (e) => {
                 e.preventDefault();
             }, { passive: false });
@@ -105,33 +104,43 @@ document.addEventListener("DOMContentLoaded", function() {
     const portfolioGrid = document.getElementById('portfolio-grid');
     if (portfolioGrid) {
         async function loadPortfolio() {
-            for (let i = 1; i < 1000; i++) {
-                const postId = i.toString().padStart(3, '0');
-                const postFolder = `${postId}-portfolio`;
-                const infoPath = `posts-portfolio/${postFolder}/${postId}-info.txt`;
-                const thumbnailPath = `posts-portfolio/${postFolder}/${postId}-thumbnail-portfolio.webp`;
-                try {
-                    const response = await fetch(infoPath);
-                    if (!response.ok) break;
-                    const infoText = await response.text();
-                    const [title, subtitle, blogPostId] = infoText.trim().split('\n');
-                    const hasLink = blogPostId && blogPostId.trim() !== '';
-                    const cardTag = hasLink ? 'a' : 'div';
-                    const card = document.createElement(cardTag);
-                    card.className = 'portfolio-card';
-                    if (hasLink) card.href = `post.html?id=${blogPostId.trim()}`;
-                    card.innerHTML = `
-                        <img src="${thumbnailPath}" alt="${title}">
-                        <div class="portfolio-card-info">
-                            <h2 class="portfolio-title">${title || ''}</h2>
-                            <p class="portfolio-subtitle">${subtitle || ''}</p>
-                        </div>
-                    `;
-                    portfolioGrid.appendChild(card);
-                } catch (error) {
-                    console.error('Ocorreu um erro ao carregar o portfólio:', error);
-                    break;
+            try {
+                const indexResponse = await fetch('instructions/portfolio_index.txt');
+                if (!indexResponse.ok) throw new Error('Arquivo de índice do portfólio (portfolio_index.txt) não encontrado.');
+                
+                const indexText = await indexResponse.text();
+                const allPostIds = indexText.trim().split('\n').filter(Boolean).reverse();
+
+                for (const postId of allPostIds) {
+                    const postFolder = `${postId}-portfolio`;
+                    const infoPath = `data/posts-portfolio/${postFolder}/${postId}-info.txt`;
+                    const thumbnailPath = `data/posts-portfolio/${postFolder}/${postId}-thumbnail-portfolio.webp`;
+                    try {
+                        const response = await fetch(infoPath);
+                        if (!response.ok) continue;
+                        
+                        const infoText = await response.text();
+                        const [title, subtitle, blogPostId] = infoText.trim().split('\n');
+                        const hasLink = blogPostId && blogPostId.trim() !== '';
+                        const cardTag = hasLink ? 'a' : 'div';
+                        const card = document.createElement(cardTag);
+                        card.className = 'portfolio-card';
+                        if (hasLink) card.href = `post.html?id=${blogPostId.trim()}`;
+                        card.innerHTML = `
+                            <img src="${thumbnailPath}" alt="${title}">
+                            <div class="portfolio-card-info">
+                                <h2 class="portfolio-title">${title || ''}</h2>
+                                <p class="portfolio-subtitle">${subtitle || ''}</p>
+                            </div>
+                        `;
+                        portfolioGrid.appendChild(card);
+                    } catch (error) {
+                        console.error(`Ocorreu um erro ao carregar o item ${postId} do portfólio:`, error);
+                    }
                 }
+            } catch (error) {
+                console.error("Falha ao carregar lista de itens do portfólio:", error);
+                portfolioGrid.innerHTML = "<p>Não foi possível carregar os itens do portfólio.</p>";
             }
         }
         loadPortfolio();
@@ -142,34 +151,43 @@ document.addEventListener("DOMContentLoaded", function() {
     const blogListContainer = document.getElementById('blog-list-container');
     if (blogListContainer) {
         async function loadBlogPreviews() {
-            for (let i = 1; i < 1000; i++) {
-                const postId = i.toString().padStart(3, '0');
-                const scriptPath = `posts-blog/${postId}-blog/${postId}-script.txt`;
-                const thumbnailPath = `posts-blog/${postId}-blog/${postId}-thumbnail-blog.webp`;
-                try {
-                    const response = await fetch(scriptPath);
-                    if (!response.ok) break;
-                    const text = await response.text();
-                    const lines = text.trim().split('\n');
-                    const title = lines[0] || 'Post sem título';
-                    const date = lines[1] || '';
-                    const description = lines[2] || '';
-                    const cardLink = document.createElement('a');
-                    cardLink.href = `post.html?id=${postId}`;
-                    cardLink.className = 'blog-preview-card';
-                    cardLink.innerHTML = `
-                        <img src="${thumbnailPath}" alt="Thumbnail de ${title}" class="blog-thumbnail">
-                        <div class="blog-preview-content">
-                            <h2 class="blog-title">${title}</h2>
-                            <p class="blog-date">${date}</p>
-                            <p class="blog-description">${description}</p>
-                        </div>
-                    `;
-                    blogListContainer.appendChild(cardLink);
-                } catch (error) {
-                    console.error(`Erro ao carregar prévia do post ${postId}:`, error);
-                    break;
+            try {
+                const indexResponse = await fetch('instructions/blog_index.txt');
+                if (!indexResponse.ok) throw new Error('Arquivo de índice do blog (blog_index.txt) não encontrado.');
+                
+                const indexText = await indexResponse.text();
+                const allPostIds = indexText.trim().split('\n').filter(Boolean).reverse();
+
+                for (const postId of allPostIds) {
+                    const scriptPath = `data/posts-blog/${postId}-blog/${postId}-script.txt`;
+                    const thumbnailPath = `data/posts-blog/${postId}-blog/${postId}-thumbnail-blog.webp`;
+                    try {
+                        const response = await fetch(scriptPath);
+                        if (!response.ok) continue;
+                        const text = await response.text();
+                        const lines = text.trim().split('\n');
+                        const title = lines[0] || 'Post sem título';
+                        const date = lines[1] || '';
+                        const description = lines[2] || '';
+                        const cardLink = document.createElement('a');
+                        cardLink.href = `post.html?id=${postId}`;
+                        cardLink.className = 'blog-preview-card';
+                        cardLink.innerHTML = `
+                            <img src="${thumbnailPath}" alt="Thumbnail de ${title}" class="blog-thumbnail">
+                            <div class="blog-preview-content">
+                                <h2 class="blog-title">${title}</h2>
+                                <p class="blog-date">${date}</p>
+                                <p class="blog-description">${description}</p>
+                            </div>
+                        `;
+                        blogListContainer.appendChild(cardLink);
+                    } catch (error) {
+                        console.error(`Erro ao carregar prévia do post ${postId}:`, error);
+                    }
                 }
+            } catch (error) {
+                console.error("Falha ao carregar lista de posts do blog:", error);
+                blogListContainer.innerHTML = "<p>Não foi possível carregar os posts.</p>";
             }
         }
         loadBlogPreviews();
@@ -226,7 +244,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 return;
             }
             const postFolderName = `${postId}-blog`;
-            const postFolderPath = `posts-blog/${postFolderName}`;
+            const postFolderPath = `data/posts-blog/${postFolderName}`;
             const scriptPath = `${postFolderPath}/${postId}-script.txt`;
             try {
                 const response = await fetch(scriptPath);
@@ -255,39 +273,26 @@ document.addEventListener("DOMContentLoaded", function() {
     // --- SEÇÃO 5: LÓGICA DA PÁGINA INICIAL ---
     const isHomePage = document.getElementById('agenda-banner');
     if (isHomePage) {
-        // Função para carregar o status da agenda
         async function loadAgendaStatus() {
             const statusTextElement = document.getElementById('agenda-status-text');
+            statusTextElement.textContent = 'Carregando status da agenda...';
             try {
-                const response = await fetch('schedule_info.txt');
+                const response = await fetch('instructions/schedule_info.txt');
                 if (!response.ok) throw new Error('Arquivo de agenda não encontrado.');
                 const text = await response.text();
-                const [monthsRaw, status] = text.trim().split('\n');
-                
-                let months = monthsRaw.split(',').map(m => m.trim());
-                let monthString = '';
-
-                if (months.length > 1) {
-                    const lastMonth = months.pop();
-                    monthString = `${months.join(', ')} e ${lastMonth}`;
-                } else {
-                    monthString = months[0];
-                }
-
-                statusTextElement.textContent = `Agenda para ${monthString} ${status}!`;
+                statusTextElement.innerHTML = text.trim().replace(/\n/g, '<br>');
             } catch (error) {
                 console.error('Erro ao carregar status da agenda:', error);
                 statusTextElement.textContent = 'Não foi possível carregar o status da agenda.';
             }
         }
         
-        // Função para carregar os últimos posts do blog
         async function loadLatestPosts() {
             const latestPostsGrid = document.getElementById('latest-posts-grid');
             if (!latestPostsGrid) return;
 
             try {
-                const indexResponse = await fetch('blog_index.txt');
+                const indexResponse = await fetch('instructions/blog_index.txt');
                 if (!indexResponse.ok) throw new Error('Arquivo de índice do blog (blog_index.txt) não encontrado.');
                 
                 const indexText = await indexResponse.text();
@@ -296,8 +301,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 const latestPostIds = allPostIds.reverse().slice(0, 6);
 
                 for (const postId of latestPostIds) {
-                    const scriptPath = `posts-blog/${postId}-blog/${postId}-script.txt`;
-                    const thumbnailPath = `posts-blog/${postId}-blog/${postId}-thumbnail-blog.webp`;
+                    const scriptPath = `data/posts-blog/${postId}-blog/${postId}-script.txt`;
+                    const thumbnailPath = `data/posts-blog/${postId}-blog/${postId}-thumbnail-blog.webp`;
 
                     try {
                         const postResponse = await fetch(scriptPath);
@@ -329,14 +334,13 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         }
         
-        // Função para carregar os feedbacks
         async function loadFeedbacks() {
             const slidesContainer = document.getElementById('feedbacks-slides-container');
             const dotsContainer = document.getElementById('feedbacks-dots-container');
             if (!slidesContainer || !dotsContainer) return;
 
             try {
-                const response = await fetch('feedbacks.txt');
+                const response = await fetch('instructions/feedbacks.txt');
                 if (!response.ok) throw new Error('Arquivo de feedbacks não encontrado.');
                 const text = await response.text();
                 const feedbacks = text.trim().split(/\n\s*\n/);
